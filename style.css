@@ -390,7 +390,7 @@
 .collections-section {
     /* width: 100%; */
     /* min-height: 100vh; */
-    background: url('/hinhanh/nen2.png') no-repeat center center;
+    background: url('nen2.png') no-repeat center center;
     background-size: cover;
     padding: 15vw 5%;
     display: flex;
@@ -511,7 +511,7 @@
    ========================================= */
 .about-us-section {
     /* width: 100%; */
-    background: url('/hinhanh/nen3.png') no-repeat top center;
+    background: url('nen3.png') no-repeat top center;
     background-size: 100% auto;
     padding: 20vw 5vw 10vw; 
     /* display: flex;
