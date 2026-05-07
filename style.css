@@ -1,0 +1,703 @@
+<style>
+
+/* =========================================
+   1. THIẾT LẬP GỐC & RESET (KHUNG NHÀ)
+   ========================================= */
+    html {
+        -ms-overflow-style: none;
+    }
+    html::-webkit-scrollbar {
+        display: none;
+    } */
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box; /* Tính toán kích thước hộp chuẩn xác */
+    }
+
+    html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        overflow-x: hidden;
+        background-color: #ffb907; /* Màu đỏ chủ đạo */
+    }
+    html {
+    scroll-behavior: smooth; /* Cuộn mượt mà */
+    }
+    #dinh-yen {
+    scroll-margin-top: 10vh; /* Cách đỉnh màn hình một khoảng khi cuộn tới */
+}
+
+/* =========================================
+   2. PHÔNG CHỮ & HIỆU ỨNG CHUYỂN ĐỘNG
+   ========================================= */
+@font-face { font-family: 'fontH1'; src: url('/font/Hoaico/TH Hoaico 1.ttf'); }
+@font-face { font-family: 'fontH2'; src: url('/font/ClassicSG/ClassiqueSaigon Full.otf'); }
+@font-face { font-family: 'fontP1'; src: url('/font/EB/EBGaramond-Regular.ttf'); }
+
+/* Hiệu ứng trồi lên và hiện dần cho chữ */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Hiệu ứng trôi xuống từ trên cho thanh điều hướng */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes stretchIn {
+    from {
+        opacity: 0;
+        letter-spacing: 1vw; /* Bắt đầu bằng việc dãn rất rộng */
+    }
+    to {
+        opacity: 1;
+        letter-spacing: 0.1vw; /* Thu về độ dãn chuẩn */
+    }
+}
+@keyframes floating {
+    0%, 100% { transform: translateY(0) rotate(15deg); }
+    50% { transform: translateY(-20px) rotate(20deg); }
+}
+
+
+
+/* =========================================
+   3. THANH ĐIỀU HƯỚNG (NAVIGATION BAR)
+   ========================================= */
+.desktop-hyphen {
+    display: inline; /* Hiện dấu - */
+}
+.mobile-break {
+    display: none; /* Không cho xuống dòng */
+}
+.header-nav {
+    position: fixed; /* Ghim thanh menu luôn nằm trên đỉnh màn hình */
+    top: 0; left: 0; right: 0;
+    z-index: 1000; /* Đảm bảo menu luôn nằm trên cùng các lớp khác */
+    display: flex;
+    justify-content: center; /* Đưa các mục menu vào chính giữa */
+    gap: clamp(20px, 5vw, 80px); /* Khoảng cách linh hoạt giữa các mục menu */
+    align-items: center;
+    background-color: #a10f18; /* Màu nền đỏ đặc trưng */
+    padding: 10px 0;
+    font-family: 'fontH2', sans-serif;
+    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Đường kẻ mờ dưới chân menu */
+    animation: fadeInDown 1s ease-out forwards;
+}
+
+.header-nav a {
+    text-decoration: none;
+    color: #f9f4e8; /* Màu trắng ngà cổ điển */
+    transition: 0.3s;
+    white-space: nowrap; /* Không cho chữ nhảy xuống dòng */
+}
+
+.header-nav a:hover {
+    color: #4473ff; /* Hiệu ứng đổi màu khi rê chuột vào */
+}
+
+/* TRANG TRÍ NÓN LÁ */
+.decor-hat {
+    position: absolute;
+    /* filter: drop-shadow(0 0 10px rgba(255,255,255,0.5)); Hiệu ứng sáng quanh nón */
+    z-index: 3;
+    animation: floating 4s ease-in-out infinite;
+}
+
+.hat1 { 
+    top: 10vw; 
+    right: 10%; 
+    transform: rotate(15deg); 
+    width: clamp(2rem, 20vw, 100rem)
+}
+.hat2 { 
+    bottom: 32vw; 
+    left: 45%; 
+    transform: rotate(15deg); 
+    width: clamp(2rem, 40vw, 100rem)
+}
+.hat3 { 
+    bottom: 3vw; 
+    left: 30%; 
+    transform: rotate(15deg); 
+    width: clamp(2rem, 20vw, 100rem)
+}
+/* =========================================
+   4. CẤU TRÚC HÌNH ẢNH (IMAGE LAYOUT)
+   ========================================= */
+.main-container {
+    width: 100%;
+}
+
+.image-box {
+    position: relative; /* Làm điểm tựa để căn chỉnh chữ đè lên ảnh */
+    width: 100%;
+    line-height: 0; /* Loại bỏ khoảng hở trắng giữa các tấm ảnh */
+}
+
+.full-width-img {
+    width: 100%;
+    height: auto;
+    display: block; /* Ép ảnh hiển thị dạng khối để không bị lỗi khoảng cách */
+}
+
+/* =========================================
+   5. NỘI DUNG CHỮ TRÊN ẢNH (TEXT OVERLAY)
+   ========================================= */
+.text-overlay {
+    position: absolute; /* Định vị chữ dựa trên khung .image-box */
+    top: 40vw; left: 50%;
+    transform: translate(-50%, -50%); /* Căn giữa tuyệt đối cả ngang và dọc */
+    text-align: center;
+    width: 100%;
+    z-index: 2;
+    pointer-events: none; /* Giúp thao tác chuột (cuộn) không bị chữ cản trở */
+}
+
+.text-overlay h1, .text-overlay h2 {
+    color: #f9f4e8;
+    /* line-height: 0.4; Tạo khối chữ dính sát nhau đầy tính nghệ thuật */
+    text-shadow: 2px 4px 10px rgba(0,0,0,0.4); /* Đổ bóng để chữ nổi bật trên nền ảnh */
+    opacity: 0;
+    stroke-width:2%;
+    animation: fadeInUp 1.2s ease-out forwards 0.5s;
+}
+
+.text-overlay h1 { 
+    font-family: 'fontH1'; 
+    font-size: clamp(2.5rem, 13vw, 12rem);
+    line-height: 0.1; 
+    -webkit-text-stroke: 0.4vw #9e181c;
+    z-index: 1000;
+}
+.text-overlay h2 { 
+    font-family: 'fontH2'; 
+    font-size: clamp(2rem, 13vw, 12rem); 
+    line-height: 0.5; 
+    -webkit-text-stroke: 0.01px #de9e00;
+    z-index: 1000;
+}
+
+/* --- TẠO KHOẢNG CÁCH DƯỚI NÚT BẤM --- */
+.description-text {
+    margin-top: 60px; /* Đây là lệnh tạo "khoảng" mà bạn muốn */
+    padding: 0 20px;  /* Tránh để chữ dính sát mép màn hình điện thoại */
+    opacity: 0;       /* Để làm hiệu ứng hiện dần */
+    animation: fadeInUp 1.2s ease-out forwards 1.3s; /* Hiện sau nút bấm một chút */
+}
+
+/* --- KIỂU CHỮ CHO ĐOẠN MÔ TẢ --- */
+.description-text p {
+    font-family: 'fontP1', serif; /* Dùng font Garamond (EB) cho mềm mại */
+    font-size: clamp(1rem, 1.5vw, 1.3rem); /* Cỡ chữ linh hoạt */
+    color: #f9f4e8;   /* Màu trắng ngà đồng bộ */
+    font-style: italic; /* In nghiêng để tạo cảm giác như một lời đề tựa */
+    line-height: 1.8;   /* Tăng khoảng cách giữa các dòng cho dễ đọc */
+    max-width: 800px;   /* Không cho dòng quá dài trên máy tính */
+    margin: 0 auto;     /* Căn giữa khối văn bản */
+    text-align: center;
+}
+
+.text-overlay .tagline {
+    font-family: 'fontP1';
+    font-size: clamp(1rem, 3.5vw, 3.5rem);
+    color: #f9f4e8;
+    /* margin-bottom: 4vh; */
+    /* font-weight: bold; */
+    letter-spacing: 3px;
+    opacity: 0;
+    animation: stretchIn 2s ease-out forwards 1s;
+    text-shadow: 2px 2px 5px rgb(117, 8, 16), /* Bóng cứng màu đỏ tệp với nền */
+                 4px 4px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Khung chứa nội dung làng nghề - ghim ở đáy ảnh */
+.village-info-overlay {
+    position: absolute;
+    bottom: clamp(0.5rem, 8vw, 25rem);; /* Cách đáy ảnh một khoảng linh hoạt */
+    left: 5%;    /* Căn trái 8% để giống mẫu bạn gửi */
+    width: 55%;
+    text-align: left; /* Chữ căn trái */
+    z-index: 5;
+    pointer-events: none;
+    animation: fadeInUp 1.5s ease-out forwards 1.5s; /* Hiện ra sau cùng */
+    opacity: 0;
+}
+
+.village-title {
+    font-family: 'fontH1', sans-serif;
+    font-size: clamp(0.1rem, 4vw, 10rem);
+    color: #f9f4e8;
+    line-height: 1;
+    margin-bottom: 20px;
+    -webkit-text-stroke: 0.5px rgba(255,255,255,0.2);
+}
+
+.village-text p {
+    font-family: 'fontP1', serif;
+    color: #f9f4e8;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    font-size: clamp(0.1rem, 1.5vw, 10rem);
+    max-width: 700px; /* Giới hạn độ rộng để dễ đọc */
+}
+
+
+/* =========================================
+   6. NÚT BẤM (CTA BUTTON)
+   ========================================= */
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffb300; /* Màu vàng làng nghề */
+    color: #1a1a1a;
+    padding: 0.8em 1.8em;
+    text-decoration: none;
+    font-family: 'fontH2';
+    font-weight: bold;
+    font-size: clamp(0.9rem, 2.5vw, 3rem);
+    border-radius: 8px;
+    transition: 0.3s;
+    pointer-events: auto; /* QUAN TRỌNG: Phải bật lại để có thể bấm được nút */
+    opacity: 0;
+    animation: fadeInUp 1.2s ease-out forwards 1.1s;
+    margin-top: 3vw; /* Khoảng cách giữa tiêu đề và tagline */
+    font-weight: 200;
+}
+
+.cta-button:hover {
+    background-color: #ffffff;
+    transform: scale(1.05); /* Phóng to nhẹ khi di chuột */
+}
+
+/* Nút bấm dạng viền (Ghé thăm làng) */
+.btn-outline {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.8em 1.8em;
+    border: 1px solid #f9f4e8;
+    border-radius: 50px;
+    color: #f9f4e8;
+    text-decoration: none;
+    font-family: 'fontH2';
+    font-size: clamp(1rem, 0.9vw, 10rem);
+    transition: 0.3s;
+    pointer-events: auto; /* Cho phép click */
+    margin-top: 10px;
+
+}
+
+.btn-outline:hover {
+    background-color: #f9f4e8;
+    color: #a10f18;
+}
+/* =========================================
+   7. PHẢN HỒI THIẾT BỊ (RESPONSIVE)
+   ========================================= */
+@media (max-width: 1024px) {
+    .header-nav { gap: 15px; }
+    .header-nav a { font-size: 0.75rem; }
+
+}
+@media (max-width: 1024px) {
+    .village-info-overlay {
+        bottom: 2vw; /* Cách đáy ảnh một khoảng linh hoạt */
+        width: 60%;
+    }
+    .village-title {
+        font-size: 5vw;
+        margin-bottom: 1.5vw;
+    }
+    .village-text p { 
+        font-size: 3vw; 
+        line-height: 1;
+        margin-bottom: 1vw;
+    }
+    .description-text {
+        margin-top: 20px; /* Giảm từ 60px xuống 20px */
+    }
+    .hat3 { 
+        bottom: 1vw; 
+        left: 50%; 
+        transform: rotate(15deg); 
+        width: clamp(2rem, 20vw, 100rem)
+    }
+    .btn-outline {
+        font-size: 3vw;
+    }
+    .text-overlay {
+        top:45vw; left: 50%;
+    }
+    .text-overlay .tagline {
+            font-size: 5vw;
+            line-height: 1.2;
+            max-width: 90%; /* Đảm bảo không bị chạm mép màn hình */
+            margin: 0 auto;
+    }
+    .description-text p {
+        font-size: 3.5vw;
+    }
+    .cta-button {
+        font-size: 3vw;
+    }
+    .desktop-hyphen {
+        display: none !important;
+    }
+
+    /* 2. Kích hoạt dấu ngắt dòng */
+    .mobile-break {
+        display: block;
+        content: "";
+        margin-top: 5px; /* Khoảng cách giữa 2 dòng */
+    }
+    @keyframes stretchIn {
+        from {
+            opacity: 0;
+            letter-spacing: 1vw; /* Bắt đầu bằng việc dãn rất rộng */
+        }
+        to {
+            opacity: 1;
+            letter-spacing: 0.3vw; /* Thu về độ dãn chuẩn */
+        }
+    }
+    @keyframes floating {
+        0%, 100% { transform: translateY(0) rotate(15deg); }
+        50% { transform: translateY(-10px) rotate(20deg); }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.collections-section {
+    /* width: 100%; */
+    /* min-height: 100vh; */
+    background: url('/hinhanh/nen2.png') no-repeat center center;
+    background-size: cover;
+    padding: 15vw 5%;
+    display: flex;
+    justify-content: center;
+}
+
+.cards-container {
+    display: flex;
+    gap: 2vw;
+    align-items: flex-start; /* Để các thẻ có thể lệch nhau theo chiều dọc */
+    /* max-width: 1200px; */
+    /* width: 100%; */
+}
+
+/* PHONG CÁCH CHUNG CỦA THẺ */
+.photo-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3vw 3vw;
+    position: relative;
+    border-radius: 5px;
+    text-align: center;
+    /* box-shadow: 15px 15px 40px rgba(0, 0, 0, 0.5); Đổ bóng đậm như mẫu */
+    transition: transform 0.3s;
+}
+
+/* ĐỘ LỆCH CỦA CÁC THẺ (SO LE) */
+.card-yellow { background-color: #fcc139; margin-top: -5vw; color: #9e181c;}
+.card-green  { background-color: #1a7a2e; margin-top: 5vw; color: white; }
+.card-red    { background-color: #a10f18; margin-top: 15vw; color: white; }
+
+/* HÌNH ẢNH TRONG THẺ */
+.card-image {
+    width: 100%;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    border: 5px solid white;
+    margin-bottom: 25px;
+}
+.card-image img { width: 100%; height: 100%; object-fit: cover; }
+
+/* CHỮ TRONG THẺ */
+.photo-card h3 {
+    font-family: 'fontH2';
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+.photo-card p {
+    font-family: 'fontP1';
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* NÚT BẤM TRONG THẺ */
+.btn-card {
+    display: inline-block;
+    padding: 10px 25px;
+    border: 1px solid currentColor; /* Tự lấy màu theo màu chữ của thẻ */
+    border-radius: 50px;
+    text-decoration: none;
+    font-family: 'fontH2';
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+.btn-card:hover { background: white; color: black; border-color: white; }
+
+/* TRANG TRÍ ICON (Nón lá, khăn rằn) */
+.card-decor {
+    position: absolute;
+    z-index: 10;
+    animation: floating 4s ease-in-out infinite;
+}
+.hat-decor { 
+    top: 17vw; 
+    left: -20px; 
+    width: 13vw;
+    transform: rotate(10deg); }
+.scarf-decor { 
+    top: -20px; 
+    left: -40px; 
+    width: 15vw; 
+    transform: rotate(10deg);
+}
+.hat-decor-right { 
+    top: -10px; 
+    right: -40px; 
+    width: 15vw;
+    transform: rotate(40deg); }
+
+/* RESPONSIVE: Trên điện thoại sẽ xếp dọc */
+@media (max-width: 768px) {
+    .cards-container { flex-direction: column; align-items: center; }
+    .photo-card { margin-top: 0 !important; width: 90%; }
+    .hat-decor { 
+        top: 50vw; 
+        left: -20vw; 
+        width: 50vw;
+        transform: rotate(10deg); 
+    }
+    .scarf-decor { 
+        top: -6vw; 
+        left: -15vw; 
+        width: 40vw; 
+    }
+    .hat-decor-right { 
+        top: -6vw; 
+        right: -16vw; 
+        transform: rotate(45deg); 
+        width: 40vw;
+    }
+}
+
+/* =========================================
+   10. PHẦN VỀ CHÚNG TÔI (HỆ CO GIÃN - VW)
+   ========================================= */
+.about-us-section {
+    /* width: 100%; */
+    background: url('/hinhanh/nen3.png') no-repeat top center;
+    background-size: 100% auto;
+    padding: 20vw 5vw 10vw; 
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+}
+
+/* Phần giới thiệu đầu */
+.about-intro {
+    text-align: left;
+    max-width: 80vw; /* Giới hạn rộng tối đa 80% màn hình */
+    margin-bottom: 8vw;
+}
+
+.about-title {
+    font-family: 'fontH1';
+    color: #a10f18;
+    /* clamp(tối thiểu, ưu tiên theo vw, tối đa) */
+    font-size: clamp(0.1rem, 5vw, 4rem); 
+    margin-bottom: 2vw;
+    margin-left: 13vw;
+}
+
+.about-description {
+    font-family: 'fontP1';
+    color: #a10f18;
+    font-size: clamp(0.7rem, 2.4vw, 5rem);
+    line-height: 1.6;
+}
+
+/* Danh sách thành viên */
+.members-list {
+    width: 100%;
+    /* max-width: 85vw; Thu hẹp lại một chút để có không gian chạy lệch */
+    display: flex;
+    flex-direction: column;
+    gap: 10vw; /* Tăng khoảng cách giữa các hàng */
+}
+
+.member-item {
+    display: flex;
+    align-items: stretch;
+    gap: 4vw; /* Khoảng cách tách rời giữa ảnh và hộp nội dung */
+    width: 100%;
+    /* background: transparent; QUAN TRỌNG: Xóa nền ở thẻ bao ngoài */
+}
+
+/* ĐIỀU CHỈNH ZIC-ZAC */
+/* Cặp 1, 3, 5: Dạt sang trái */
+.member-item:nth-child(odd) {
+    justify-content: flex-start;
+}
+
+/* Cặp 2, 4: Đảo ngược và dạt sang phải */
+.member-item:nth-child(even) {
+    flex-direction: row-reverse;
+    justify-content: flex-start; /* flex-start của row-reverse là bên phải */
+}
+
+/* Khung ảnh thành viên */
+.member-image {
+    flex: 0 0 20vw; /* Tăng kích thước ảnh lên một chút cho cân đối */
+    aspect-ratio: 1 / 1;
+    border: 0.5vw solid white;
+    box-shadow: 1vw 1vw 2vw rgba(0,0,0,0.15); /* Đổ bóng cho ảnh nổi lên */
+    overflow: hidden;
+    z-index: 2;
+}
+.member-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Nội dung chữ thành viên */
+.member-info {
+    flex: 10;
+    padding: 3vw;
+    border: 0.5vw solid white;
+    /* box-shadow: 1vw 1vw 3vw rgba(0,0,0,0.1); */
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    /* QUAN TRỌNG: Xử lý nếu chữ quá dài so với chiều cao hộp hình ảnh */
+    max-height: 30vw;
+}
+.member-info1 {
+    flex: 10;
+    /* padding: 3vw; */
+    border: 0.5vw solid white;
+    box-shadow: 1vw 1vw 3vw rgba(0,0,0,0.1);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    /* QUAN TRỌNG: Xử lý nếu chữ quá dài so với chiều cao hộp hình ảnh */
+    overflow-y: auto; 
+    max-height: 30vw;
+}
+
+.member-info h3 {
+    font-family: 'fontH2';
+    font-size: clamp(1.2rem, 2.5vw, 4rem);
+    margin-bottom: 1.5vw;
+}
+
+.member-info p {
+    font-family: 'fontP1';
+    font-size: clamp(0.9rem, 1.3vw, 2rem);
+    line-height: 1.6;
+}
+
+/* DI CHUYỂN CÁC LỚP MÀU NỀN VÀO MEMBER-INFO */
+.member-info.bg-red   { background-color: #a10f18; color: white; }
+.member-info.bg-teal  { background-color: #17a2b8; color: white; }
+.member-info.bg-green { background-color: #1a7a2e; color: white; }
+.member-info.bg-cream { background-color: #f9f4e8; color: #a10f18; border: 0.5vw solid #a10f18; }
+.member-info.bg-dark  { background-color: #2d2d2d; color: white; }
+
+/* =========================================
+   ĐIỀU CHỈNH MOBILE (ĐỒNG BỘ BỀ NGANG)
+   ========================================= */
+@media (max-width: 1024px) {
+    /* 1. Ép các mục xếp dọc và căn vào giữa màn hình */
+    .member-item, 
+    .member-item:nth-child(even) {
+        flex-direction: column; /* Xếp chồng dọc */
+        align-items: center;    /* Căn giữa cả ảnh và hộp chữ */
+        padding: 0 !important;  /* Xóa bỏ các khoảng padding lệch của desktop */
+        gap: 0;                 /* Dính sát hoặc tạo khoảng cách tùy bạn (ở đây để 0 cho khít) */
+    }
+
+    /* 2. Ép Ô HÌNH và Ô NỘI DUNG có bề ngang bằng hệt nhau */
+    .member-image {
+        width: 60vw;      /* Độ rộng bằng 80% chiều ngang màn hình điện thoại */
+        flex: 0 0 60vw;   /* Đảm bảo không bị co lại dưới tác động của flex */
+        /* max-width: 450px; Giới hạn độ rộng tối đa để không bị quá to trên tablet */
+        margin: 0 auto;   /* Đảm bảo luôn nằm chính giữa */
+    }
+    .member-info {
+        width: 50vw;      /* Độ rộng bằng 80% chiều ngang màn hình điện thoại */
+        /* flex: 0 0 80vw;   Đảm bảo không bị co lại dưới tác động của flex */
+        /* max-width: 450px; Giới hạn độ rộng tối đa để không bị quá to trên tablet */
+        margin: 0 auto;   /* Đảm bảo luôn nằm chính giữa */
+    }
+
+    /* 3. Tinh chỉnh riêng cho ô hình */
+    .member-image {
+        aspect-ratio: 1 / 1; /* Giữ ảnh luôn vuông */
+        border-radius: 1.5vw 1.5vw 0 0; /* Bo góc trên nếu muốn (tùy thiết kế) */
+    }
+
+    /* 4. Tinh chỉnh riêng cho ô nội dung */
+    .member-info {
+        aspect-ratio: auto;   /* Hộp chữ nên để tự động dài ra theo nội dung */
+        min-height: 40vw;     /* Độ cao tối thiểu để không quá lùn so với ảnh */
+        padding: 6vw 5vw;     /* Padding tỉ lệ cho mobile */
+        border-radius: 0 0 1.5vw 1.5vw; /* Bo góc dưới để khớp với ảnh ở trên */
+        text-align: center;   /* Căn giữa chữ cho đẹp bố cục dọc */
+    }
+    .about-title {
+        font-size: 3vw;
+        margin-left: 14vw;
+    }
+        .about-description {
+        font-family: 'fontP1';
+        color: #a10f18;
+        font-size: 3vw;
+        line-height: 1.6;
+    }
+        .about-intro {
+        max-width: 100vw; /* Giới hạn rộng tối đa 80% màn hình */
+        margin-bottom: 8vw;
+    }
+    .about-us-section {
+        /* width: 100%; */
+        background: url('/hinhanh/nen3.png') no-repeat top center;
+        background-size: 100% auto;
+        padding: 18vw 5vw 10vw; 
+        /* display: flex;
+        flex-direction: column;
+        align-items: center; */
+    }
+}
+
+</style>
