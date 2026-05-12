@@ -29,13 +29,16 @@
     #dinh-yen {
     scroll-margin-top: 10vh; /* Cách đỉnh màn hình một khoảng khi cuộn tới */
 }
+    #about {
+    scroll-margin-top: 10vh; /* Cách đỉnh màn hình một khoảng khi cuộn tới */
+}
 
 /* =========================================
    2. PHÔNG CHỮ & HIỆU ỨNG CHUYỂN ĐỘNG
    ========================================= */
-@font-face { font-family: 'fontH1'; src: url('TH Hoaico 1.ttf'); }
-@font-face { font-family: 'fontH2'; src: url('ClassiqueSaigon Full.otf'); }
-@font-face { font-family: 'fontP1'; src: url('EBGaramond-Regular.ttf'); }
+@font-face { font-family: 'fontH1'; src: url('/TH Hoaico 1.ttf'); }
+@font-face { font-family: 'fontH2'; src: url('/ClassiqueSaigon Full.otf'); }
+@font-face { font-family: 'fontP1'; src: url('/EBGaramond-Regular.ttf'); }
 
 /* Hiệu ứng trồi lên và hiện dần cho chữ */
 @keyframes fadeInUp {
@@ -82,10 +85,10 @@
     justify-content: center; /* Đưa các mục menu vào chính giữa */
     gap: clamp(20px, 5vw, 80px); /* Khoảng cách linh hoạt giữa các mục menu */
     align-items: center;
-    background-color: #a10f18; /* Màu nền đỏ đặc trưng */
+    background-color: #a10f1972; /* Màu nền đỏ đặc trưng */
     padding: 10px 0;
     font-family: 'fontH2', sans-serif;
-    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+    font-size: clamp(0.9rem, 2vw, 1.5rem);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Đường kẻ mờ dưới chân menu */
     animation: fadeInDown 1s ease-out forwards;
 }
@@ -100,6 +103,75 @@
 .header-nav a:hover {
     color: #4473ff; /* Hiệu ứng đổi màu khi rê chuột vào */
 }
+/* Container của Dropdown */
+.dropdown {
+    position: relative; /* Làm gốc tọa độ cho menu con */
+    display: inline-block;
+}
+
+/* Style cho nút BỘ ẢNH */
+.dropbtn {
+    cursor: pointer;
+}
+
+/* NỘI DUNG THẢ XUỐNG (Bị ẩn mặc định) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #a10f1972;
+    min-width: 220px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 10000;
+    /* border-top: 3px solid #a10f18; */
+    
+    /* CHIẾN THUẬT CĂN GIỮA */
+    top: 100%;        /* Nằm ngay dưới chân nút */
+    left: 50%;        /* Đẩy mép trái của khung ra giữa nút Cha */
+    transform: translateX(-50%); /* Kéo ngược khung về bên trái 50% độ rộng của chính nó */
+    
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    /* Khoảng cách nhìn thấy được */
+    margin-top: 0px;
+}
+.dropdown-content::before {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 8px;
+    border-style: solid;
+    border-color: transparent transparent #a10f18 transparent;
+}
+
+/* Các liên kết bên trong menu thả xuống */
+.dropdown-content a {
+    color: #f9f4e8;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    font-size: 0.9rem;
+    /* border-bottom: 1px solid #a10f1972; */
+    transition: 0.3s;
+}
+
+/* Hiệu ứng khi rê chuột vào từng bộ ảnh */
+.dropdown-content a:hover {
+    background-color: #ffec85; /* Đổi sang màu vàng khi chọn */
+     color: #a10f18;
+    padding-left: 25px; /* Hiệu ứng đẩy chữ sang phải một chút */
+}
+
+/* HIỆU ỨNG QUAN TRỌNG: Lia chuột vào .dropdown thì hiện .dropdown-content */
+.dropdown:hover .dropdown-content {
+    display: block;
+    /* animation: fadeInDown 0.4s ease; Thêm hiệu ứng hiện ra mượt mà */
+}
 
 /* TRANG TRÍ NÓN LÁ */
 .decor-hat {
@@ -109,19 +181,19 @@
     animation: floating 4s ease-in-out infinite;
 }
 
-.hat1 { 
+.hat111 { 
     top: 10vw; 
     right: 10%; 
     transform: rotate(15deg); 
     width: clamp(2rem, 20vw, 100rem)
 }
-.hat2 { 
+.hat222 { 
     bottom: 32vw; 
     left: 45%; 
     transform: rotate(15deg); 
     width: clamp(2rem, 40vw, 100rem)
 }
-.hat3 { 
+.hat333 { 
     bottom: 3vw; 
     left: 30%; 
     transform: rotate(15deg); 
@@ -174,6 +246,7 @@
     line-height: 0.1; 
     -webkit-text-stroke: 0.4vw #9e181c;
     z-index: 1000;
+    animation: fadeInUp 1.2s ease-out forwards 0.5s;
 }
 .text-overlay h2 { 
     font-family: 'fontH2'; 
@@ -181,6 +254,7 @@
     line-height: 0.5; 
     -webkit-text-stroke: 0.01px #de9e00;
     z-index: 1000;
+    animation: fadeInUp 1.2s ease-out forwards 0.5s;
 }
 
 /* --- TẠO KHOẢNG CÁCH DƯỚI NÚT BẤM --- */
@@ -201,6 +275,7 @@
     max-width: 800px;   /* Không cho dòng quá dài trên máy tính */
     margin: 0 auto;     /* Căn giữa khối văn bản */
     text-align: center;
+    animation: fadeInUp 1.2s ease-out forwards 0.5s;
 }
 
 .text-overlay .tagline {
@@ -269,6 +344,7 @@
     animation: fadeInUp 1.2s ease-out forwards 1.1s;
     margin-top: 3vw; /* Khoảng cách giữa tiêu đề và tagline */
     font-weight: 200;
+    animation: fadeInUp 1.2s ease-out forwards 0.5s;
 }
 
 .cta-button:hover {
@@ -403,6 +479,7 @@
     align-items: flex-start; /* Để các thẻ có thể lệch nhau theo chiều dọc */
     /* max-width: 1200px; */
     /* width: 100%; */
+    animation: fadeInUp 1.2s ease-out forwards 0.5s;
 }
 
 /* PHONG CÁCH CHUNG CỦA THẺ */
@@ -524,6 +601,7 @@
     text-align: left;
     max-width: 80vw; /* Giới hạn rộng tối đa 80% màn hình */
     margin-bottom: 8vw;
+    animation: fadeInUp 1.2s ease-out forwards 0.5s;
 }
 
 .about-title {
@@ -549,6 +627,7 @@
     display: flex;
     flex-direction: column;
     gap: 10vw; /* Tăng khoảng cách giữa các hàng */
+    animation: fadeInUp 1.2s ease-out forwards 0.5s;
 }
 
 .member-item {
@@ -691,7 +770,7 @@
     }
     .about-us-section {
         /* width: 100%; */
-        background: url('/hinhanh/nen3.png') no-repeat top center;
+        background: url('nen3.png') no-repeat top center;
         background-size: 100% auto;
         padding: 18vw 5vw 10vw; 
         /* display: flex;
@@ -699,5 +778,626 @@
         align-items: center; */
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*BỘ ẢNH 1 */
+    .image-box1 {
+        position: relative;
+        width: 100%;
+        min-height: 100vh;
+        background-color: #a10f18; /* Màu nền dự phòng */
+
+        /* Xếp chồng 2 lớp ảnh: Ảnh đầu tiên viết trước sẽ nằm trên cùng */
+        background-image: 
+            url('boanh1bg2.png'), 
+            url('boanh1bg2.png');
+
+        /* Thiết lập lặp: Ảnh 1 không lặp, ảnh 2 lặp theo chiều dọc */
+        background-repeat: 
+            no-repeat, 
+            repeat-y;
+
+        /* Thiết lập vị trí: Cả hai đều bắt đầu từ đỉnh */
+        background-position: 
+            top center, 
+            top center;
+
+        /* Thiết lập kích thước */
+        background-size: 
+            100% auto, 
+            100% auto;
+        padding-top: 80px; /* Khoảng cách này nên bằng chiều cao thanh Nav của bạn */
+        padding-bottom: 80px; /* Khoảng cách này nên bằng chiều cao thanh Nav của bạn */
+    }
+    .full-width-img1 {
+        width: 100%;
+        height: auto;
+        display: block;
+        overflow: hidden;
+    }
+@media (max-width: 1024px) {
+    .image-box1 {
+        /* Bạn có thể đổi sang một ảnh nền khác dọc hơn nếu muốn */
+        /* background-image: url('mobile-bg.png'); */
+        
+        background-size: 100% auto; 
+        background-repeat: repeat-y; /* Ảnh sẽ lặp lại theo chiều dọc bao nhiêu tùy thích */
+        background-attachment: scroll;
+    }
+
+    /* Ẩn ảnh nền dạng thẻ <img> nếu bạn chưa xóa ở bước 1 */
+    .full-width-img1 {
+        display: none;
+    }
+
+    /* Giúp lớp phủ dãn ra theo nội dung */
+    .gallery-overlay {
+        position: relative; /* Chuyển từ absolute sang relative để đẩy khung cha */
+        width: 100%;
+        height: auto;
+        padding-bottom: 50px;
+    }
+}
+
+    /* LỚP PHỦ NỘI DUNG */
+    .gallery-overlay {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+    }
+
+    /* TIÊU ĐỀ */
+    .gallery-header {
+        text-align: center;
+        margin-top: 5vw;
+        margin-bottom: 5vw;
+    }
+    .album-no {
+        font-family: 'fontH2';
+        color: #a10f18;
+        font-size: 4vw;
+    }
+    .album-name {
+        font-family: 'fontH1';
+        font-size: 5vw;
+        background: linear-gradient(to bottom, #ff3216, #ffee56);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.2));
+        -webkit-text-stroke: 0.1vw #ffffff
+    }
+
+    /* BỐ CỤC HÀNG */
+    .gallery-rows {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto 4vw;
+        padding: 0 8vw;
+        align-items: stretch !important; 
+        gap: 0;
+    }
+
+    .gallery-row {
+        display: flex;
+        /* Ép khung chữ và khung ảnh luôn cao bằng nhau để dính mượt hơn */
+        align-items: stretch; 
+        justify-content: center;
+        gap: 0; /* Triệt tiêu khoảng cách hoàn toàn */
+        max-width: 90vw; /* Tổng chiều rộng 2 khối là 90vw (45 + 45) */
+        margin: 0 auto 10vw; 
+        position: relative;
+    }
+
+    /* KHUNG ẢNH VIỀN CHIẾU */
+    .media-part { flex: 0 0 55vw;}
+    .mat-frame {
+        /* padding: 1.2vw; */
+        /* background: repeating-linear-gradient(45deg, #e1b12c 0 5px, #44bd32 5 10px, #c23616 10 15px);
+        box-shadow: 10px 10px 30px rgba(0,0,0,0.1); */
+        border: 0.2vw solid #ffec85;
+    }
+    .mat-frame img { width: 100%; height: auto; display: block; }
+    .caption {
+        position: absolute; /* Tách nó ra khỏi luồng tính chiều cao của Flexbox */
+        top: 100%; /* Đẩy nó xuống ngay sát mép dưới của khung ảnh */
+        left: 0;
+        width: 100%;
+        font-family: 'fontP1';
+        font-style: italic;
+        color: #a10f18;
+        margin-top: 1vw;
+        font-size: 1.2vw;
+    }
+
+    /* KHỐI CHỮ */
+    .text-part {
+        flex: 1;
+        min-height: auto !important;
+        padding: 3vw;
+        border: 0.2vw solid #ffec85;
+        box-shadow: 5px 5px 15px rgba(0,0,0,0.05);
+        display: flex;
+        flex-direction: column; /* Cho phép nội dung xếp dọc bên trong */
+        justify-content: center;
+        min-height: auto; /* Để stretch tự quyết định chiều cao */
+    }
+
+    /* HÀNG LẺ (1, 3, 5...): Vàng bên trái, Trắng bên phải */
+    .gallery-row:nth-child(odd) .text-part {
+        background: linear-gradient(to right, #ffec85, #ffffff);
+    }
+
+    /* HÀNG CHẴN (2, 4, 6...): Trắng bên trái, Vàng bên phải */
+    .gallery-row:nth-child(even) .text-part {
+        background: linear-gradient(to right, #ffffff, #ffec85);
+    }
+
+    .gallery-row:nth-child(odd) .caption {
+        text-align: left;
+        /* Nếu muốn cách mép một chút cho nghệ thuật */
+        padding-right: 5px; 
+    }
+
+    /* Hàng chẵn (2, 4, 6...): Caption căn về phía bên TRÁI của khung ảnh */
+    .gallery-row:nth-child(even) .caption {
+        text-align: right;
+        /* Nếu muốn cách mép một chút */
+        padding-left: 5px;
+    }
+
+    .text-part p {
+        font-family: 'fontP1';
+        font-size: clamp(1rem, 1.5vw, 2.2rem);
+        color: #a10f18;
+        line-height: 1.8;
+    }
+
+    /* NÓN LÁ TRANG TRÍ */
+    .decor-hat2 {
+        position: absolute;
+        width: 15vw;
+        z-index: 5;
+        animation: floating 4s ease-in-out infinite;
+    }
+    .hat-1 { top: -5vw; right: -13vw; width: 30vw;transform: rotate(-100deg);}
+    .hat-2 { top: -3vw; left: -5vw; transform: rotate(-40deg); }
+    .hat-3 { bottom: -8vw; right: -3vw; }
+
+    @keyframes floating {
+        0%, 100% { transform: translateY(0) rotate(15deg); }
+        50% { transform: translateY(-1.5vw) rotate(20deg); }
+}
+    .decor-scraft2 {
+        position: absolute;
+        width: 15vw;
+        z-index: 5;
+        animation: floating 4s ease-in-out infinite;
+    }
+    .scraft-11 { top: -5vw; right: -13vw; width: 30vw;transform: rotate(-100deg);}
+    .scraft-22 { top: -3vw; left: -5vw; transform: rotate(-40deg); }
+    .scraft-33 { bottom: -8vw; right: -3vw; }
+
+    @keyframes floating {
+        0%, 100% { transform: translateY(0) rotate(15deg); }
+        50% { transform: translateY(-1.5vw) rotate(20deg); }
+}
+/* RESPONSIVE CHO THIẾT BỊ DƯỚI 1024PX (TABLET & MOBILE) */
+@media (max-width: 1024px) {
+    
+    /* 1. Tiêu đề chính: Tăng kích thước để nổi bật hơn trên màn hình nhỏ */
+    .album-name {
+        font-size: 8vw; /* To hơn một chút so với desktop */
+        -webkit-text-stroke: 0.2vw #ffffff;
+    }
+    .album-no {
+        font-size: 5vw;
+    }
+
+    /* 2. Bố cục hàng: Chuyển từ ngang sang dọc */
+    .gallery-row {
+        flex-direction: column; /* Xếp chồng ảnh và chữ lên nhau */
+        align-items: center;
+        max-width: 100vw;
+        margin-bottom: 15vw; /* Tăng khoảng cách để chừa chỗ cho Caption */
+    }
+
+    /* 3. Phần Ảnh: Chiếm toàn bộ chiều rộng */
+    .media-part {
+        flex: 0 0 auto;
+        width: 90%;
+        margin-bottom: 8vw; /* Khoảng cách để hiện Caption bên dưới ảnh */
+        order: 1 !important; 
+        margin-bottom: 5vw; /* Tạo khoảng cách với phần chữ bên dưới */
+    }
+
+    /* 4. Caption: Căn giữa cho dễ nhìn trên mobile */
+    .caption {
+        font-size: 3.5vw; /* Tăng kích cỡ chữ caption */
+        text-align: center !important; /* Luôn căn giữa trên mobile */
+        padding: 0 2vw;
+    }
+
+    /* 5. Khối Chữ: Nằm ngay dưới ảnh */
+    .text-part {
+        width: 75%;
+        padding: 6vw; /* Tăng padding để dễ đọc hơn */
+        border-top: none; /* Bỏ viền trên nếu bạn muốn nó dính liền mạch */
+        order: 2 !important;
+    }
+
+    /* 6. Chỉnh lại Gradient: Chuyển hướng đổ màu từ trên xuống dưới cho mượt */
+    .gallery-row:nth-child(odd) .text-part,
+    .gallery-row:nth-child(even) .text-part {
+        background: linear-gradient(to bottom, #ffec85, #ffffff);
+    }
+
+    .text-part p {
+        font-size: 3vw; /* Font chữ to hơn để dễ đọc trên điện thoại */
+        text-align: center; /* Căn giữa nội dung chữ */
+    }
+
+    /* 7. Nón lá: Thu nhỏ lại để không đè lên chữ */
+    .decor-hat2 {
+        width: 25vw; /* Nhỏ lại một chút */
+        opacity: 0.6; /* Làm mờ hơn để không gây rối mắt */
+    }
+    
+    .hat-1 { top: -10vw; right: 2vw; }
+    .hat-2 { top: -5vw; left: 2vw; }
+}
+
+/* Tinh chỉnh thêm cho Mobile cực nhỏ (Dưới 480px) */
+@media (max-width: 480px) {
+    .text-part p {
+        font-size: 4.5vw;
+    }
+    .caption {
+        font-size: 4vw;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* LÀNG NGHỀ */
+/* DÙNG LẠI CODE CŨ CỦA BẠN */
+.image-box2 {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+.full-width-img2 {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* PHÁT TRIỂN THÊM LỚP PHỦ */
+.gallery-overlay1 {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Tiêu đề chính */
+.village-header1 {
+    margin-top: 6vw; /* Đẩy tiêu đề xuống đúng vị trí mờ của nền */
+    text-align: center;
+}
+.village-title1 {
+    font-family: 'fontH1';
+    font-size: 8vw;
+    color: #f9f4e8;
+    -webkit-text-stroke: 0.15vw #de9e00;
+    filter: drop-shadow(2px 4px 8px rgba(0,0,0,0.3));
+}
+.village-quote1 {
+    font-family: 'fontP1';
+    font-size: 2vw;
+    color: #f9f4e8;
+    max-width: 50vw;
+    margin: 1vw auto;
+    line-height: 1.4;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+}
+
+/* KHU VỰC CHỮ TRONG Ô TRẮNG */
+.village-content-area1 {
+    width: 70vw; /* Độ rộng này sẽ khớp với ô trắng của ảnh nền langnghebg.jpg */
+    margin-top: 13vw;
+}
+.content-block1 {
+    position: relative;
+    margin-bottom: 0.5vw;
+}
+.sub-title1 {
+    display: flex;         /* Kích hoạt flexbox */
+    align-items: center;   /* Căn giữa đường kẻ theo chiều dọc của chữ */
+    gap: 20px;             /* Khoảng cách giữa chữ và đường kẻ */
+    white-space: nowrap;   /* Giữ tiêu đề trên một hàng */
+    
+    font-family: 'fontP';
+    font-size: 3.5vw;
+    color: #ffffff;
+    font-style: italic;
+    margin-bottom: 0vw;
+}
+.sub-title1::after {
+    /* content: ""; */
+    flex-grow: 1;          /* Để đường kẻ tự dãn hết phần không gian bên phải */
+    height: 1px;           /* Độ dày của đường kẻ (có thể tăng lên 2px nếu muốn đậm hơn) */
+    background-color: #ffec85; /* Màu vàng nhạt giống trong hình */
+}
+.text-group1 p {
+    font-family: 'fontP1';
+    font-size: 2vw;
+    color: #17731b;
+    line-height: 1.3;
+    margin-bottom: 0vw;
+}
+
+/* CHỮ TRANG TRÍ LỚN */
+.big-word1 {
+    font-family: 'fontH1';
+    font-size: 7vw;
+    text-align: right;
+    margin-top: 0vw;
+    /* line-height: 5vw; */
+    margin-bottom: 0 !important; 
+    padding-bottom: 0 !important;
+}
+.outline-text1 {
+    -webkit-text-stroke: 0.25vw #de9e00;
+    color: transparent;
+}
+.solid-text1 {
+    color: #ffcb00;
+}
+
+/* NÓN LÁ (Lớp dưới cùng) */
+.decor-hat1 {
+    position: absolute;
+    width: 12vw;
+    z-index: 1;
+    opacity: 0.8;
+    animation: floating 5s ease-in-out infinite;
+}
+.hat-11 { top: 18vw; left: 6vw; transform: rotate(-20deg); }
+.hat-22 { top: 12vw; right: 10vw; }
+
+@keyframes floating {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-1.5vw); }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* BỘ ẢNH 2 */
+    .image-box3 {
+        position: relative;
+        width: 100%;
+        min-height: 100vh;
+        background-color: #a10f18; /* Màu nền dự phòng */
+
+        /* Xếp chồng 2 lớp ảnh: Ảnh đầu tiên viết trước sẽ nằm trên cùng */
+        background-image: 
+            url('boanh2bg1.png'), 
+            url('boanh2bg2.png');
+
+        /* Thiết lập lặp: Ảnh 1 không lặp, ảnh 2 lặp theo chiều dọc */
+        background-repeat: 
+            no-repeat, 
+            repeat-y;
+
+        /* Thiết lập vị trí: Cả hai đều bắt đầu từ đỉnh */
+        background-position: 
+            top center, 
+            top center;
+
+        /* Thiết lập kích thước */
+        background-size: 
+            100% auto, 
+            100% auto;
+        padding-top: 80px; /* Khoảng cách này nên bằng chiều cao thanh Nav của bạn */
+        padding-bottom: 80px; /* Khoảng cách này nên bằng chiều cao thanh Nav của bạn */
+    }
+    .full-width-img3 {
+        width: 100%;
+        height: auto;
+        display: block;
+        overflow: hidden;
+    }
+@media (max-width: 1024px) {
+    .image-box3 {
+        /* Bạn có thể đổi sang một ảnh nền khác dọc hơn nếu muốn */
+        /* background-image: url('mobile-bg.png'); */
+        
+        background-size: 100% auto; 
+        background-repeat: repeat-y; /* Ảnh sẽ lặp lại theo chiều dọc bao nhiêu tùy thích */
+        background-attachment: scroll;
+    }
+
+    /* Ẩn ảnh nền dạng thẻ <img> nếu bạn chưa xóa ở bước 1 */
+    .full-width-img3 {
+        display: none;
+    }
+
+    /* Giúp lớp phủ dãn ra theo nội dung */
+    .gallery-overlay {
+        position: relative; /* Chuyển từ absolute sang relative để đẩy khung cha */
+        width: 100%;
+        height: auto;
+        padding-bottom: 50px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* BỘ ẢNH 3 */
+   .image-box4 {
+    position: relative;
+    width: 100%;
+    /* min-height: 100vh; */
+    /* Thiết lập nền mặc định cho máy tính */
+    background-image: url('boanh3bg.png');
+    background-size: 100% auto;
+    background-repeat: repeat-y; /* Quan trọng: Ảnh tự nối đuôi khi nội dung dài */
+    background-position: top center;
+    padding-top: 80px; /* Khoảng cách này nên bằng chiều cao thanh Nav của bạn */
+    padding-bottom: 80px; /* Khoảng cách này nên bằng chiều cao thanh Nav của bạn */
+}
+
+    @media (max-width: 1024px) {
+    .image-box4 {
+        /* Bạn có thể đổi sang một ảnh nền khác dọc hơn nếu muốn */
+        /* background-image: url('mobile-bg.png'); */
+        
+        background-size: 100% auto; 
+        background-repeat: repeat-y; /* Ảnh sẽ lặp lại theo chiều dọc bao nhiêu tùy thích */
+        background-attachment: scroll;
+    }
+
+    /* Ẩn ảnh nền dạng thẻ <img> nếu bạn chưa xóa ở bước 1 */
+    .full-width-img4 {
+        display: none;
+    }
+
+    /* Giúp lớp phủ dãn ra theo nội dung */
+    .gallery-overlay {
+        position: relative; /* Chuyển từ absolute sang relative để đẩy khung cha */
+        width: 100%;
+        height: auto;
+        padding-bottom: 50px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+/* VIDEO */
+    .image-box5 {
+        position: relative;
+        width: 100%;
+    }
+    .full-width-img5 {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+
+
+
+
+    /* Trạng thái ban đầu của phần tử */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px); /* Đẩy xuống dưới 30px */
+    transition: all 0.8s ease-out; /* Thời gian chuyển động 0.8 giây */
+    visibility: hidden;
+}
+
+/* Trạng thái sau khi được nhìn thấy (Active) */
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0); /* Trở về vị trí cũ */
+    visibility: visible;
+}
+
+
+
 
 </style>
