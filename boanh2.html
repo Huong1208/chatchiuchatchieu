@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bộ ảnh 2 - Chắt chiu chất chiếu</title>
+    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <style>
+        .header-nav a:hover {
+            color: #a10f18; /* Hiệu ứng đổi màu khi rê chuột vào */
+        }
+        .header-nav a {
+            color: #2d2424;
+        }
+        .dropdown-content::before {
+            border-color: transparent transparent #ffffff8f; transparent;
+            color: #ffffff8f;
+        }
+        .dropdown-content a:hover {
+            background-color: #007914; /* Đổi sang màu vàng khi chọn */
+            color: #ffffff;
+            padding-left: 25px; /* Hiệu ứng đẩy chữ sang phải một chút */
+        }
+        .album-no {
+            font-family: 'fontH2';
+            color: #065244;
+            font-size: 4vw;
+        }
+        .album-name {
+        font-size: 5vw;
+        background: linear-gradient(to bottom, #034209, #42dc20);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.2));
+        -webkit-text-stroke: 0.1vw #ffffff
+        }
+        .caption {
+            color: #00332a;
+        }
+        .text-part {
+            border: 0.2vw solid #2a9e2c;
+        }
+        .mat-frame{
+            border: 0.2vw solid #2a9e2c;
+        }
+        .gallery-row:nth-child(odd) .text-part {
+        background: linear-gradient(to right, #034209, #002f04);
+        }
+
+        /* HÀNG CHẴN (2, 4, 6...): Trắng bên trái, Vàng bên phải */
+        .gallery-row:nth-child(even) .text-part {
+            background: linear-gradient(to right, #002f04, #034209);
+        }
+        .text-part p {
+        color: #ffffff;
+        }
+    </style>
+    <nav class="header-nav" style="background-color: #ffffff8f;">
+        <a href="index.html">TRANG CHỦ</a>
+        <a href="langnghe.html">LÀNG NGHỀ</a>
+        <div class="dropdown">
+            <a class="dropbtn">BỘ ẢNH 2<i class="arrow-down"></i></a>
+            <div class="dropdown-content" style="background-color: #ffffff8f";>
+                <a href="boanh1.html">Tấm chiếu trải dài trăm năm lịch sử</a>
+                <a href="#">Bộ Ảnh 2: Chất Chiếu</a>
+                <a href="boanh3.html">Lác sắc</a>
+            </div>
+        </div>
+        <a href="video.html">VIDEO</a>
+        <a href="about.html">LIÊN HỆ</a>
+    </nav>
+    <main>
+        <section class="image-box3">
+            <div class="gallery-overlay">
+        </div>
+
+                <header class="gallery-header">
+                    <p class="album-no">CHIẾU ĐỊNH YÊN</p>
+                    <h1 class="album-name">TÊN BỘ ẢNH 2</h1>
+                </header>
+
+                <div class="gallery-rows">
+                    <div class="gallery-row row-1">
+                        <div class="media-part">
+                            <div class="mat-frame"><img src="chieu.png"></div>
+                            <p class="caption">Ảnh 1. Mô tả ảnh, nói gì đó ý nghĩa</p>
+                        </div>
+                        <div class="text-part">
+                            <p>Chợ Chiếu hiện ra tĩnh lặng dưới ánh nắng sớm, đón chờ những chuyến ghe chở đầy nguyên liệu. Những cuộn lác xếp chồng lên nhau trên bến, chuẩn bị bước vào một chu trình mới, nơi bàn tay con người sẽ biến chúng thành những tác phẩm rực rỡ sắc màu.</p>
+                        </div>
+                        <img src="khăn.png" class="decor-hat2 hat-1">
+                    </div>
+
+                    <div class="gallery-row row-2">
+                        <div class="text-part">
+                            <p>Em dành thời gian cho em đi, em đi ra ngoài đường, kết bạn đi em, làm điều gì đó ý nghĩa đi...</p>
+                        </div>
+                        <div class="media-part">
+                            <div class="mat-frame"><img src="/hinhanh/anh2.jpg"></div>
+                            <p class="caption">Ảnh 2. Mèo đời tam trí</p>
+                        </div>
+                        <img src="khăn.png" class="decor-hat2 hat-2">
+                    </div>
+                </div>
+            </section>    
+        </main>
+
+
+    
+    <script src="code.js"></script>
+</body>
+</html>
