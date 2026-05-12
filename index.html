@@ -4,22 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang chủ - Chắt chiu chất chiếu</title>
+    <link rel="icon" type="image/png" href="icon.png">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav class="header-nav">
         <a href="#">TRANG CHỦ</a>
-        <a href="#">LÀNG NGHỀ</a>
-        <a href="#">BỘ ẢNH</a>
-        <a href="#">LIÊN HỆ</a>
+        <a href="langnghe.html">LÀNG NGHỀ</a>
+        <div class="dropdown">
+            <a href="#bo-anh" class="dropbtn">BỘ ẢNH <i class="arrow-down"></i></a>
+            <div class="dropdown-content">
+                <a href="boanh1.html">Tấm chiếu trải dài trăm năm lịch sử</a>
+                <a href="boanh2.html">Bộ Ảnh 2: Chất Chiếu</a>
+                <a href="boanh3.html">Lác sắc</a>
+            </div>
+        </div>
+        <a href="video.html">VIDEO</a>
+        <a href="#about">LIÊN HỆ</a>
     </nav>
 
     <main class="main-container">
         <section class="image-box">
             <img src="nen1.png" class="full-width-img">
-            <img src="nonla1.png" class="decor-hat hat1">
-            <img src="nonla2.png" class="decor-hat hat2">
-            <img src="nonla3.png" class="decor-hat hat3">
+            <img src="nonla1.png" class="decor-hat hat111">
+            <img src="nonla2.png" class="decor-hat hat222">
+            <img src="nonla3.png" class="decor-hat hat333">
             <div class="text-overlay">
                 <h2>CHẮT CHIU</h2>
                 <h1 style="color: #f9f4e8;">Chất Chiếu</h1>
@@ -40,7 +49,7 @@
                     <p>Trong gia đình, vì em là con út nên ai cũng thương yêu em hết mực, nhưng mẹ là người gần gũi chăm sóc em nhiều nhất.</p>
                     <p>Năm nay, mẹ em gần bốn mươi mốt tuổi. Với thân hình mảnh mai, thon thả đã tô đậm cho mẹ với vẻ đẹp của người mẹ hiền từ.</p>
                 </div>
-                <a href="#bo-anh" class="btn-outline">Ghé thăm làng &rarr;</a>
+                <a href="langnghe.html" class="btn-outline">Ghé thăm làng &rarr;</a>
             </div>
         </section>
         
@@ -48,39 +57,39 @@
         <section id="bo-anh" class="collections-section">
             <div class="cards-container">
                 <div class="photo-card card-yellow">
-                    <img src="/icon/nonla3.png" class="card-decor hat-decor">
+                    <img src="nonla3.png" class="card-decor hat-decor">
                     <div class="card-image">
-                        <img src="/hinhanh/anh-bo-1.jpg">
+                        <img src="anh-bo-1.jpg">
                     </div>
-                    <h3>TÊN BỘ ẢNH 1</h3>
-                    <p>Năm nay, mẹ em gần bốn mươi mốt tuổi. Với thân hình mảnh mai, thon thả đã tô đậm cho mẹ với vẻ đẹp của người mẹ hiền từ.</p>
-                    <a href="#" class="btn-card">Xem thêm &rarr;</a>
+                    <h3>Chiếu Định Yên</h3>
+                    <p>Chiếc chiếu trải dài trăm năm lịch sử</p>
+                    <a href="boanh1.html" class="btn-card">Xem thêm &rarr;</a>
                 </div>
 
                 <div class="photo-card card-green">
-                    <img src="/icon/khăn.png" class="card-decor scarf-decor">
+                    <img src="khăn.png" class="card-decor scarf-decor">
                     <div class="card-image">
-                        <img src="/hinhanh/anh-bo-2.jpg">
+                        <img src="anh-bo-2.jpg">
                     </div>
                     <h3>TÊN BỘ ẢNH 2</h3>
                     <p>Năm nay, mẹ em gần bốn mươi mốt tuổi. Với thân hình mảnh mai, thon thả đã tô đậm cho mẹ với vẻ đẹp của người mẹ hiền từ.</p>
-                    <a href="#" class="btn-card">Xem thêm &rarr;</a>
+                    <a href="boanh2.html" class="btn-card">Xem thêm &rarr;</a>
                 </div>
 
                 <div class="photo-card card-red">
                     <img src="nonla2.png" class="card-decor hat-decor-right">
                     <div class="card-image">
-                        <img src="/hinhanh/anh-bo-3.jpg">
+                        <img src="anh-bo-3.jpg">
                     </div>
                     <h3>TÊN BỘ ẢNH 3</h3>
                     <p>Năm nay, mẹ em gần bốn mươi mốt tuổi. Với thân hình mảnh mai, thon thả đã tô đậm cho mẹ với vẻ đẹp của người mẹ hiền từ.</p>
-                    <a href="#" class="btn-card">Xem thêm &rarr;</a>
+                    <a href="boanh3.html" class="btn-card">Xem thêm &rarr;</a>
                 </div>
 
             </div>
         </section>
 
-        <section class="about-us-section">
+        <section id="about" class="about-us-section">
             <div class="about-intro">
                 <h2 class="about-title">VỀ CHÚNG TÔI</h2>
                 <p class="about-description">
@@ -91,7 +100,7 @@
 
             <div class="members-list">
                 <div class="member-item">
-                    <div class="member-image"><img src="/hinhanh/member1.jpg" alt=""></div>
+                    <div class="member-image"><img src="LamAnhava.jpg" alt=""></div>
                     <div class="member-info bg-red">
                         <h3>Nguyễn Lâm Anh</h3>
                         <p>Trong gia đình, vì em là con út nên ai cũng thương yêu em hết mực, nhưng mẹ là người gần gũi chăm sóc em nhiều nhất.</p>
@@ -99,7 +108,7 @@
                 </div>
 
                 <div class="member-item">
-                    <div class="member-image"><img src="/hinhanh/member1.jpg" alt=""></div>
+                    <div class="member-image"><img src="GiaBaoava.jpg" alt=""></div>
                     <div class="member-info bg-teal">
                         <h3>Dương Gia Bảo</h3>
                         <p>Nội dung mô tả...</p>
@@ -107,7 +116,7 @@
                 </div>
 
                 <div class="member-item">
-                    <div class="member-image"><img src="/hinhanh/member1.jpg" alt=""></div>
+                    <div class="member-image"><img src="MinhHuongava.png" alt=""></div>
                     <div class="member-info bg-green">
                         <h3>Trần Minh Hưởng</h3>
                         <p>Nội dung mô tả...</p>
@@ -115,7 +124,7 @@
                 </div>
 
                 <div class="member-item">
-                    <div class="member-image"><img src="/hinhanh/member1.jpg" alt=""></div>
+                    <div class="member-image"><img src="HoangNganava.png" alt=""></div>
                     <div class="member-info bg-cream">
                         <h3>Trần Hoàng Ngân</h3>
                         <p>Nội dung mô tả...</p>
@@ -123,7 +132,7 @@
                 </div>
 
                 <div class="member-item">
-                    <div class="member-image"><img src="/hinhanh/member1.jpg" alt=""></div>
+                    <div class="member-image"><img src="BaoTranava.png" alt=""></div>
                     <div class="member-info bg-dark">
                         <h3>Nguyễn Huỳnh Bảo Trân</h3>
                         <p>Nội dung mô tả...</p>
