@@ -36,9 +36,9 @@
 /* =========================================
    2. PHÔNG CHỮ & HIỆU ỨNG CHUYỂN ĐỘNG
    ========================================= */
-@font-face { font-family: 'fontH1'; src: url('/TH Hoaico 1.ttf'); }
-@font-face { font-family: 'fontH2'; src: url('/ClassiqueSaigon Full.otf'); }
-@font-face { font-family: 'fontP1'; src: url('/EBGaramond-Regular.ttf'); }
+@font-face { font-family: 'fontH1'; src: url('TH Hoaico 1.ttf'); }
+@font-face { font-family: 'fontH2'; src: url('ClassiqueSaigon Full.otf'); }
+@font-face { font-family: 'fontP1'; src: url('EBGaramond-Regular.ttf'); }
 
 /* Hiệu ứng trồi lên và hiện dần cho chữ */
 @keyframes fadeInUp {
